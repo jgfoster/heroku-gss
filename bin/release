@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# return a YML file with startup instructions
+#
+cat <<EOF
+---
+default_process_types:
+  web: ./startup.sh
+EOF
