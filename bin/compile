@@ -49,12 +49,12 @@ EOF
 # create startup script
 #
 cat > startup.sh << EOF
-echo "$PWD contains:"
+echo "$PWD contains"
 ls -alF
-cat startup.sh
 export GEMSTONE=\$PWD/product
 export PATH=\$GEMSTONE/bin:\$PATH
 export GEMSTONE_GLOBAL_DIR=\$PWD
+echo "GEMSTONE=$GEMSTONE"
 startstone -L
 topaz -l
 EOF
@@ -63,6 +63,3 @@ chmod +x startup.sh
 #
 # that should do it!
 #
-echo "$PWD contains:"
-ls -alF
-cat startup.sh
