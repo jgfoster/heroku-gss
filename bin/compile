@@ -8,6 +8,7 @@ FILE=GemStone64Bit3.1.0.5.alpha-x86_64.Linux.tgz
 URL=http://seaside.gemtalksystems.com/downloads/x86_64.Linux/$FILE
 curl $URL > gemstone.tgz
 tar xvzf gemstone.tgz > unzip.out
+rm gemstone.tgz unzip.out
 #
 # get keyfile and extent
 #
@@ -59,5 +60,5 @@ chmod +x startup.sh
 #
 # that should do it!
 #
-echo "PWD=$PWD"
+echo "$PWD contains:"
 ls -alF
