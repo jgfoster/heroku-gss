@@ -30,7 +30,12 @@ ln -s $PWD/webtools product/examples/www
 cat > .topazini << EOF
 set user DataCurator pass swordfish gems gs64stone
 login
-input \$GEMSTONE/examples/www/installAndRun.tpz
+input \$GEMSTONE/examples/www/install.tpz
+run
+| server |
+server := GsSession currentSession userProfile symbolList last at: #'Server'.
+server startServerAtPort: (System gemEnvironmentVariable: 'PORT') asNumber.
+%
 exit
 EOF
 #
