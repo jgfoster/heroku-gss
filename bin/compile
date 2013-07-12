@@ -2,6 +2,7 @@
 #
 # download a GemStone/S 64 Bit server
 #
+cd /app
 echo "downloading GemStone/S 64 Bit"
 FILE=GemStone64Bit3.1.0.5.alpha-x86_64.Linux.tgz
 URL=http://seaside.gemtalksystems.com/downloads/x86_64.Linux/$FILE
