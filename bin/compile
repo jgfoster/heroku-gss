@@ -1,0 +1,50 @@
+#!/bin/sh
+#
+# download a GemStone/S 64 Bit server
+#
+FILE=GemStone64Bit3.1.0.5.alpha-x86_64.Linux.tgz
+URL=http://seaside.gemtalksystems.com/downloads/x86_64.Linux/$FILE
+curl $URL > gemstone.tgz
+tar xvzf gemstone.tgz > unzip.out
+#
+# get keyfile and extent
+#
+chmod +w product/sys/
+cp product/seaside/etc/gemstone.key product/sys/
+chmod -w product/sys/
+cp product/bin/extent0.dbf product/data
+chmod +w product/data/extent0.dbf 
+#
+# Heroku has a 32 MB limit on shared memory
+#
+echo 'SHR_PAGE_CACHE_SIZE_KB = 25000;' >> product/data/system.conf
+#
+# get Webtools
+#
+git clone https://github.com/jgfoster/webtools.git
+chmod +w product/examples/ product/examples/www/
+rm -rf product/examples/www
+ln -s $PWD/webtools product/examples/www
+#
+# create Topaz initialization file
+cat > .topazini << EOF
+set user DataCurator pass swordfish gems gs64stone
+login
+input \$GEMSTONE/examples/www/installAndRun.tpz
+exit
+EOF
+#
+# create startup script
+#
+cat > startup.sh << EOF
+export GEMSTONE=$PWD/product
+export PATH=$GEMSTONE/bin:$PATH
+export GEMSTONE_GLOBAL_DIR=$PWD
+startstone -L
+topaz -l
+EOF
+#
+chmod +x startup.sh
+#
+# that should do it!
+#
