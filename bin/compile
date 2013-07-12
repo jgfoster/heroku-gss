@@ -27,19 +27,16 @@ echo 'SHR_PAGE_CACHE_SIZE_KB = 25000;' >> product/data/system.conf
 #
 echo "downloading webtools"
 git clone https://github.com/jgfoster/webtools.git
-chmod +w product/examples/ product/examples/www/
-rm -rf product/examples/www
-ln -s $PWD/webtools product/examples/www
+chmod +w product/examples/www/
+mv webtools/* product/examples/www
+rmdir webtools
 #
 # create startup script
 #
 cat > startup.sh << EOF
-echo "$PWD contains"
-ls -alF
-export GEMSTONE=\$PWD/product
+export GEMSTONE=/app/product
 export PATH=\$GEMSTONE/bin:\$PATH
-export GEMSTONE_GLOBAL_DIR=\$PWD
-echo "GEMSTONE=$GEMSTONE"
+export GEMSTONE_GLOBAL_DIR=/app
 startstone -L
 topaz -l
 EOF
