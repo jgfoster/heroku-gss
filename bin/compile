@@ -38,7 +38,7 @@ export GEMSTONE=/app/product
 export PATH=\$GEMSTONE/bin:\$PATH
 export GEMSTONE_GLOBAL_DIR=/app
 startstone -L
-topaz -l
+echo "input startup.tpz" | topaz -l
 EOF
 #
 chmod +x startup.sh
