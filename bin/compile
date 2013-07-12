@@ -49,9 +49,9 @@ EOF
 # create startup script
 #
 cat > startup.sh << EOF
-export GEMSTONE=$PWD/product
+export GEMSTONE=/app/product
 export PATH=$GEMSTONE/bin:$PATH
-export GEMSTONE_GLOBAL_DIR=$PWD
+export GEMSTONE_GLOBAL_DIR=/app
 startstone -L
 topaz -l
 EOF
