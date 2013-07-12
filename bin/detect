@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+# if you ask for this buildpack then you get a GemStone/S system
+exit 0
