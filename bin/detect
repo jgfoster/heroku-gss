@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
-# if you ask for this buildpack then you get a GemStone/S system
-exit 0
+if [ -f $1/.topazini ]; then
+ echo "gemstone" && exit 0
+else
+ echo "no" && exit 1
+fi
