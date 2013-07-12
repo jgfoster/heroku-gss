@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-if [ -f $1/.topazini ]; then
+if [ -f $1/startup.tpz ]; then
  echo "gemstone" && exit 0
 else
  echo "no" && exit 1
