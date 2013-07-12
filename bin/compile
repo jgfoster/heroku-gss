@@ -2,6 +2,7 @@
 #
 # download a GemStone/S 64 Bit server
 #
+echo "downloading GemStone/S 64 Bit"
 FILE=GemStone64Bit3.1.0.5.alpha-x86_64.Linux.tgz
 URL=http://seaside.gemtalksystems.com/downloads/x86_64.Linux/$FILE
 curl $URL > gemstone.tgz
@@ -9,6 +10,7 @@ tar xvzf gemstone.tgz > unzip.out
 #
 # get keyfile and extent
 #
+echo "setting up keyfile and extent"
 chmod +w product/sys/
 cp product/seaside/etc/gemstone.key product/sys/
 chmod -w product/sys/
@@ -21,12 +23,15 @@ echo 'SHR_PAGE_CACHE_SIZE_KB = 25000;' >> product/data/system.conf
 #
 # get Webtools
 #
+echo "downloading webtools"
 git clone https://github.com/jgfoster/webtools.git
 chmod +w product/examples/ product/examples/www/
 rm -rf product/examples/www
 ln -s $PWD/webtools product/examples/www
 #
 # create Topaz initialization file
+#
+echo "creating application files"
 cat > .topazini << EOF
 set user DataCurator pass swordfish gems gs64stone
 login
@@ -53,3 +58,5 @@ chmod +x startup.sh
 #
 # that should do it!
 #
+echo "PWD=$PWD"
+ls -alF
