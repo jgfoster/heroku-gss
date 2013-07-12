@@ -5,5 +5,5 @@
 cat <<EOF
 ---
 default_process_types:
-  web: $1/startup.sh
+  web: echo \`pwd; ls -alF\`
 EOF
