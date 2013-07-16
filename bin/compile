@@ -26,10 +26,13 @@ echo 'SHR_PAGE_CACHE_SIZE_KB = 25000;' >> product/data/system.conf
 # get Webtools
 #
 echo "downloading webtools"
+cd product/examples
+chmod +w .
+mv www www.bak
 git clone https://github.com/jgfoster/webtools.git
-chmod +w product/examples/www/
-mv webtools/* product/examples/www
-rmdir webtools
+mv webtools www
+chmod -w .
+cd ../..
 #
 # create startup script
 #
